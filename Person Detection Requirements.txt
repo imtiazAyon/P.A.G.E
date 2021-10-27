@@ -1,0 +1,47 @@
+Ensure you have the latest version of Visual Studio Build Tools ...I ran in 2019 
+Then Make Sure you have the latest version of CUDA Toolkit installed ....I ran in v11
+
+
+Run these commands in conda shell
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+conda install tensorflow==1.15 
+conda install cython 
+conda install opencv 
+conda install matplotlib
+pip install easydict
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+File Edit Instruction
+=======================================================================================================================================
+
+** Open the file in setup.py file in lib folder in Person_Detection Project
+
+** Find out the compute capability of your NVIDIA GPU from this link --> https://developer.nvidia.com/cuda-gpus
+
+** Then multiply the value with 10 and replace the arch=sm52 in line number 224 with arch=sm## (## your number)
+
+**Save the file and close
+
+If anything goes wrong, delete all the generated .c and .cpp files (lib/nms/cpu_nms.c, lib/nms/gpu_nms.cpp, lib/utils/bbox.c) and everything in lib/build
+
+
+Now, turn to lib directory, run python setup.py build_ext. It possible reports an error:
+
+nms\gpu_nms.cpp(2075): error C2664: "void _nms(int *,int *,const float *,int,int,float,int)": cannot convert parameter 1 from '__pyx_t_5numpy_int32_t *' to 'int *'
+Modify one line in the generated file in lib/nms/gpu_nms.cpp, search the keyword _nms, find the following line:
+change (line 2075 in my generated cpp file)
+
+  _nms((&(*__Pyx_BufPtrStrided1d(__pyx_t_5numpy_int32_t *, __pyx_pybuffernd_keep.rcbuffer->pybuffer.buf, __pyx_t_10, ...
+
+to
+
+  _nms((&(*__Pyx_BufPtrStrided1d(int *, __pyx_pybuffernd_keep.rcbuffer->pybuffer.buf, __pyx_t_10, ...
+
+
+At last, run python setup.py build_ext again, copy everything in lib/build/lib.win-amd64-3.6 to lib.
+========================================================================================================================================
+
+Now run these commands in the conda shell
+
+cd ..
+python ./tools/demo.py

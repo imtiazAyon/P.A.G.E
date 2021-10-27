@@ -1,0 +1,16 @@
+conda install scikit-learn
+pip install face_recognition <--this can fail
+conda install tqdm
+conda install opencv
+conda install pandas
+
+
+if face_recognition fails:
+
+Download Microsoft Visual Studio 2015
+pip install cmake
+pip install dlib
+pip install face-recognition
+
+To run gui:
+conda install matplotlib

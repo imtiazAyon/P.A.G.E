@@ -1,0 +1,2 @@
+input_dir,output_dir,model_dir
+J:/face-classification-master/test,J:/face-classification-master/results,J:/face-classification-master/face_model_Fair_6.pkl
