@@ -1,2 +1,5 @@
-# P.A.G.E
- Person Detection and Gender, Age and Ethnicity Classification System
+#  Person Detection and Gender, Age and Ethnicity Classification System (P.A.G.E)
+
+This is my final year Capstone Project where I had to work in a group of 3 to build a software, that is capable of identifying humans from images along with the ability to classify Age, Race, and Gender of a person up to a limited capacity. This is achieved by training two independent models through machine learning. The first model was trained to identify people from an image and classify any object as a person from a variety of angles using a range of features as markers. The second model is capable of detecting and extracting features from any possible faces of people within an image. Through the extraction of facial features, the model then predicts age, race, and gender. The entire system, through the two models, then presents images as output with identified people encapsulated in boxes and their predicted attributes displayed under the face. The results are also presented in a statistical format for easier and quicker understanding and evaluation.
+
+Read the full report [here](https://drive.google.com/file/d/1wXo3yUkwhJXGJPGJAmtPpmM2XiWmNNVC/view?usp=sharing)
